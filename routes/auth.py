@@ -1,7 +1,9 @@
 from fastapi import APIRouter, HTTPException
 from models.usuario_model import UsuarioCreate, UsuarioLogin
 from services.usuario_service import registrar_usuario, autenticar_usuario
-from security.security import criar_token
+from security.auth import criar_token
+from utils.responses import sucesso
+from utils.logger import logger
 
 router = APIRouter()
 
@@ -14,7 +16,9 @@ def registrar(usuario: UsuarioCreate):
         usuario.senha
     )
 
-    return {"mensagem": "Usuário criado com sucesso"}
+    logger.info(f"Novo usuário cadastrado | email={usuario.email}")
+
+    return sucesso(mensagem="Usuário criado com sucesso")
 
 
 @router.post("/auth/login")
@@ -25,15 +29,17 @@ def login(usuario: UsuarioLogin):
         usuario.senha
     )
 
-    if not user:
-        raise HTTPException(status_code=401, detail="Email ou senha inválidos")
-
+    logger.info(f"Login realizado | email={usuario.email}")
+    
     token = criar_token({
-        "id": user.Id,
-        "email": user.Email
+        "id": user[0],
+        "email": user[2]
     })
 
-    return {
+    return sucesso(
+        dados={
         "access_token": token,
         "token_type": "bearer"
-    }
+        },
+        mensagem="Login realizado com sucesso"
+    )

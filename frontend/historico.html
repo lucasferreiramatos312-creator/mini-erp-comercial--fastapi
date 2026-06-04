@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Histórico de Vendas</title>
+
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+
+<body>
+    <div class="navbar">
+        <button onclick="ir('produtos.html')">Produtos</button>
+        <button onclick="ir('Produtos_inativos.html')">Produtos Inativos</button>
+        <button onclick="ir('clientes.html')">Clientes</button>
+        <button onclick="ir('clientes_inativos.html')">Clientes Inativos</button>
+        <button onclick="ir('vendas.html')">Vendas</button>
+        <button onclick="ir('dashboard.html')">Dashboard</button>
+        <button onclick="logout()">Sair</button>
+
+    </div>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>📜 Histórico de Vendas</h1>
+
+            <div class="filtros">
+
+                <input type="number" id="mes" placeholder="Mês">
+                <input type="number" id="ano" placeholder="Ano">
+
+                <button onclick="buscarHistorico()">Buscar</button>
+
+            </div>
+
+
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Cliente</th>
+                        <th>Total</th>
+                        <th>Data</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tabelaHistorico"></tbody>
+
+            </table>
+
+
+
+        </div>
+
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/historico.js"></script>
+
+</body>
+
+</html>

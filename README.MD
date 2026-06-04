@@ -1,21 +1,28 @@
-Sistema de Produtos com Autenticação (FastAPI)
+Mini ERP Comercial - FastAPI
 
-Sistema backend completo com autenticação JWT e controle de acesso por usuário.
+Sistema ERP desenvolvido em Python com FastAPI para gerenciamento de clientes, produtos, vendas, estoque e pagamentos.
 
----
-
-## Sobre o projeto
-
-Este projeto é uma API desenvolvida com FastAPI que permite:
-
-- Cadastro de usuários
-- Login com autenticação JWT
-- CRUD completo de produtos
-- Cada usuário acessa apenas seus próprios dados
+O projeto foi desenvolvido aplicando arquitetura em camadas, autenticação JWT, regras de negócio reais e testes automatizados com cobertura de 93%.
 
 ---
 
-## Tecnologias utilizadas
+Sobre o Projeto
+
+Este projeto é uma API ERP desenvolvida com FastAPI para gerenciamento de:
+
+- Usuários
+- Clientes
+- Produtos
+- Estoque
+- Vendas
+- Pagamentos
+- Fechamento mensal
+
+O sistema aplica autenticação JWT, arquitetura em camadas e testes automatizados para garantir segurança, organização e qualidade do código.
+
+---
+
+Tecnologias Utilizadas
 
 - Python
 - FastAPI
@@ -23,82 +30,190 @@ Este projeto é uma API desenvolvida com FastAPI que permite:
 - PyODBC
 - JWT (python-jose)
 - Passlib (bcrypt)
-- HTML + JavaScript (frontend simples)
+- Pytest
+- Coverage.py
+- Pydantic
+- Uvicorn
+- HTML
+- Css
+- JavaScript
 
 ---
 
-## Funcionalidades
+Funcionalidades
 
-### Usuários
-- Criar usuário (POST /auth/registrar)
-- Login (POST /auth/login)
+Usuários
 
-### Produtos
-- Listar produtos do usuário logado (GET /api/produtos)
-- Buscar produto por ID (GET /api/produtos/{id})
-- Criar produto (POST /api/produtos)
-- Atualizar produto (PUT /api/produtos/{id})
-- Deletar produto (DELETE /api/produtos/{id})
+- Cadastro de usuários
+- Login
+- Autenticação JWT
+
+Clientes
+
+- Criar cliente
+- Buscar cliente
+- Atualizar cliente
+- Inativar cliente
+- Reativar cliente
+
+Produtos
+
+- Criar produto
+- Buscar produto
+- Atualizar produto
+- Inativar produto
+- Reativar produto
+- Controle de estoque
+
+Vendas
+
+- Criar venda simples
+- Criar venda completa
+- Adicionar itens
+- Atualizar itens
+- Remover vendas pendentes
+
+Pagamentos
+
+- Pagamento parcial
+- Pagamento total
+- Controle de saldo
+
+Fechamento Mensal
+
+- Fechamento de vendas pagas
+- Histórico de vendas fechadas
 
 ---
 
-##  Segurança
+Segurança
 
 - Senhas criptografadas com bcrypt
 - Autenticação via JWT
 - Proteção de rotas com token
 - Isolamento de dados por usuário
+- Tratamento centralizado de exceções
 
 ---
 
-## Como executar o projeto
+Testes Automatizados
 
-### 1. Clone o repositório
-```bash
-git clone https://github.com/lucasferreiramatos312-creator
+O projeto possui:
+
+- Testes unitários
+- Testes de integração
+- Testes de fluxo completo
+
+Cobertura de Testes
+
+- Cobertura total: 93%
+- 1.787 linhas analisadas
+- Fluxos principais totalmente testados
+
+«Recomenda-se adicionar uma imagem do relatório HTML gerado pelo Coverage.py nesta seção.»
+
+---
+
+Estatísticas do Projeto
+
+- Arquitetura em camadas
+- Autenticação JWT
+- CRUD completo de Clientes
+- CRUD completo de Produtos
+- Controle de Estoque
+- Controle de Vendas
+- Controle de Pagamentos
+- Fechamento Mensal
+- 93% de cobertura de testes
+
+---
+
+Como Executar o Projeto
+
+1. Clone o repositório
+
+https://github.com/lucasferreiramatos312-creator/mini-ERP_Sisitema_De_Apoio_Para_Revedendores.git
 
 2. Instale as dependências
-Bash
-py -m pip install fastapi uvicorn pyodbc passlib[bcrypt] python-jose
 
-3. Configure o banco de dados
-Crie o banco no SQL Server
-Ajuste a string de conexão no arquivo database.py
+py -m pip install fastapi uvicorn pyodbc passlib[bcrypt] python-jose pytest pytest-cov
 
-4. Execute o servidor
-Bash
+3. Configure o Banco de Dados
+
+- Crie o banco de dados no SQL Server.
+- Ajuste a string de conexão no arquivo "database.py".
+
+4. Execute o Servidor
+
 uvicorn main:app --reload
 
-5. Acesse a documentação
+5. Acesse a Documentação
 
 http://127.0.0.1:8000/docs
+
 6. Frontend
 
-Abra o arquivo index.html com a extensão Live Server
+Abra o arquivo "index.html" utilizando a extensão Live Server.
 
- Arquitetura do projeto:
+---
+
+Arquitetura do Projeto
 
 O projeto segue o padrão de separação em camadas:
-Routes → Entrada da API (HTTP)
-Services → Regras de negócio
-Repositories → Acesso ao banco de dados
-Security → Autenticação e criptografia
+
+Routes        → Entrada da API (HTTP)
+Services      → Regras de negócio
+Repositories  → Acesso ao banco de dados
+Security      → Autenticação e criptografia
+Models        → Estruturas de dados
+Tests         → Testes automatizados
+
 Essa estrutura facilita manutenção, escalabilidade e organização do código.
 
-Aprendizados:
-Durante o desenvolvimento deste projeto foram aplicados conceitos como:
-Arquitetura em camadas
-Autenticação com JWT
-Integração backend + frontend
-Debug e tratamento de erros
-Consumo de API com JavaScript
+---
 
-Melhorias futuras:
-Interface com React
-Deploy em nuvem
-Docker
-Testes automatizados
-Refresh Token
- 
-Autor: Lucas Ferreira:
+Aprendizados
+
+Durante o desenvolvimento deste projeto foram aplicados conceitos como:
+
+- Arquitetura em camadas
+- Autenticação JWT
+- Integração Backend + Frontend
+- Testes automatizados
+- Cobertura de código
+- Tratamento de exceções
+- Regras de negócio
+- Consumo de API com JavaScript
+- Integração com SQL Server
+
+---
+
+## Imagens do Projeto
+
+### Documentação Swagger
+
+![Swagger](images/swagger.png)
+![Swagger](images/swagger2.png)
+### Cobertura de Testes
+
+![Coverage](images/coverage.png)
+![Coverage](images/coverage2.png)
+
+Melhorias Futuras
+
+- Dashboard financeiro melhorado 
+- Relatórios PDF
+- Docker
+- Deploy em nuvem
+- React no frontend
+- Controle de usuários por perfil
+- Exportação para Excel
+- Dashboard administrativo
+
+---
+
+Autor
+
+Lucas Ferreira
+
 Desenvolvedor Backend Python

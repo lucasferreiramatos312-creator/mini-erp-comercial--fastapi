@@ -6,8 +6,8 @@ def criar_usuario(nome, email, senha_hash):
     cursor = conexao.cursor()
 
     cursor.execute("""
-        INSERT INTO Usuarios (Nome, Email, DataCadastro, Senha)
-        VALUES (?, ?, GETDATE(), ?)
+        INSERT INTO Usuarios (nome, email, senha)
+        VALUES (?, ?, ?)
     """, (nome, email, senha_hash))
 
     conexao.commit()

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes Inativos</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="navbar">
+        <button onclick="ir('produtos.html')">Produtos</button>
+        <button onclick="ir('produtos_inativos.html')">Produtos Inativos</button>
+        <button onclick="ir('clientes.html')">Clientes</button>
+        <button onclick="ir('vendas.html')">Vendas</button>
+        <button onclick="ir('dashboard.html')">Dashboard</button>
+        <button onclick="ir('historico.html')">Histórico de Vendas</button>
+        <button onclick="logout()">Sair</button>
+
+    </div>
+
+    <div class="=card">
+
+        <h2>Clientes Inativos</h2>
+
+        <table>
+            <tbody id="listar"></tbody>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody id="listaClientesInativos"></tbody>
+
+        </table>
+
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/clientes_inativos.js"></script>
+
+    <div id="mensagem"></div>
+
+
+</body>
+
+</html>

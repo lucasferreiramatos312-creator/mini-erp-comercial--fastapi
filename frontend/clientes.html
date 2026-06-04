@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="navbar">
+        <button onclick="ir('produtos.html')">Produtos</button>
+        <button onclick="ir('produtos_inativos.html')">Produtos Inativos</button>
+        <button onclick="ir('clientes_inativos.html')">Clientes Inativos</button>
+        <button onclick="ir('vendas.html')">Vendas</button>
+        <button onclick="ir('dashboard.html')">Dashboard</button>
+        <button onclick="ir('historico.html')">Histórico de Vendas</button>
+        <button onclick="logout()">Sair</button>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Criar Cliente</h2>
+
+        <div class="form-group">
+            <input type="text" id="nome" placeholder="Nome">
+        </div>
+
+        <div class="form-group">
+            <input type="email" id="email" placeholder="Email">
+        </div>
+
+        <div class="form-group">
+            <input type="text" id="telefone" placeholder="Telefone">
+        </div>
+
+        <button id="bntSalvar" onclick="criarCliente()">Salvar</button>
+    </div>
+
+    <div class="card">
+
+        <h2>Clientes</h2>
+
+        <div style="display:flex; gap:10px; margin-bottom: 20px;">
+
+            <input id="busca" placeholder="Buscar">
+
+            <button onclick="buscar()">Buscar</button>
+
+        </div>
+
+        <table>
+            <tbody id="listar"></tbody>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody id="listar"></tbody>
+
+        </table>
+
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/clientes.js"></script>
+
+    <div id="mensagem"></div>
+
+</body>
+
+</html>

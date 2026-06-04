@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <div class="navbar">
+        <button onclick="ir('produtos.html')">Produtos</button>
+        <button onclick="ir('produtos_inativos.html')">Produtos Inativos</button>
+        <button onclick="ir('clientes.html')">Clientes</button>
+        <button onclick="ir('clientes_inativos.html')">Clientes Inativos</button>
+        <button onclick="ir('vendas.html')">Vendas</button>
+        <button onclick="ir('historico.html')">Histórico de Vendas</button>
+        <button onclick="logout()">Sair</button>
+    </div>
+
+    <div class="container">
+        <h1>Dashboard</h1>
+
+
+        <div class="grid">
+            <div class="card">
+                <h2>💰 Total de Vendas</h2>
+                <p id="total_vendas"></p>
+            </div>
+
+            <div class="card">
+                <h2>📈 Faturamento</h2>
+                <p id="faturamento"></p>
+            </div>
+
+            <div class="card">
+                <h2>💳 Recebido</h2>
+                <p id="recebido"></p>
+            </div>
+
+            <div class="card">
+                <h2>⏳ Pendente</h2>
+                <p id="pendente"></p>
+            </div>
+
+            <div class="card">
+                <h2>👥 Clientes</h2>
+                <p id="clientes"></p>
+            </div>
+
+            <div class="card">
+                <h2>📦 Produtos</h2>
+                <p id="produtos"></p>
+            </div>
+
+            <div class="card">
+                <h2>🎫 Ticket médio</h2>
+                <p id="ticket"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/dashboard.js"></script>
+
+</body>
+
+</html>

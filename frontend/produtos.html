@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Produtos</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="navbar">
+        <button onclick="ir('produtos_inativos.html')">Produtos Inativos</button>
+        <button onclick="ir('clientes.html')">Clientes</button>
+        <button onclick="ir('clientes_inativos.html')">Clientes Inativos</button>
+        <button onclick="ir('vendas.html')">Vendas</button>
+        <button onclick="ir('dashboard.html')">Dashboard</button>
+        <button onclick="ir('historico.html')">Histórico de Vendas</button>
+        <button onclick="logout()">Sair</button>
+    </div>
+
+
+    <div class="card">
+        <h2>Criar Produto</h2>
+
+        <input type="text" id="nomeProduto" placeholder="Nome do Produto">
+        <input type="number" id="preco" placeholder="Preço">
+        <input type="number" id="estoque" placeholder="Estoque">
+
+        <button id="btnSalvar" onclick="criarProduto()">Salvar</button>
+    </div>
+
+    <hr>
+
+    <div class="card">
+
+        <h2>Buscar Produtos</h2>
+
+        <input type="text" id="buscarProduto" placeholder="Digite o nome do produto">
+        <button onclick="buscarProduto()">Buscar</button>
+
+        <button onclick="listarProdutos()">Mostrar todos produtos</button>
+    </div>
+
+    <hr>
+
+    <h2>Lista de Produtos</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Estoque</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+
+        <tbody id="listaProdutos"></tbody>
+
+    </table>
+
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/produtos.js"></script>
+
+    <div id="mensagem"></div>
+
+</body>
+
+</html>

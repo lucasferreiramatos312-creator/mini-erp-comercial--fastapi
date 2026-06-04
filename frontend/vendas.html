@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vendas</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <button onclick="ir('produtos.html')">Produtos</button>
+        <button onclick="ir('produtos_inativos.html')">Produtos Inativos</button>
+        <button onclick="ir('clientes.html')">Clientes</button>
+        <button onclick="ir('clientes_inativos.html')">Clientes Inativos</button>
+        <button onclick="ir('dashboard.html')">Dashboard</button>
+        <button onclick="ir('historico.html')">Histórico de Vendas</button>
+        <button onclick="logout()">Sair</button>
+    </div>
+
+    <div class="card">
+
+        <h2>Nova Venda</h2>
+
+        <select id="clientes"></select>
+        <select id="produtos"></select>
+        <input type="number" id="quantidade" placeholder="Quantidade">
+
+        <button onclick="adcionarItem()">Adicionar Item</button>
+        <button onclick="finalizarVenda()">Finalizar Venda</button>
+
+        <h3>Itens da Venda</h3>
+        <ul id="listaItens"></ul>
+    </div>
+
+    <div class="card">
+
+        <h2>Vendas</h2>
+
+        <button onclick="fecharMes()">Fechar Caixa do Mês</button>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Total</th>
+                    <th>Data</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaVendas"></tbody>
+        </table>
+
+    </div>
+
+    <div id="modal">
+        <div id="modalContent">
+            <h3>Detalhes da Venda</h3>
+            <div id="detalhes"></div>
+
+            <h4>Pagar</h4>
+            <input type="number" id="valorPagamento" placeholder="Valor">
+
+            <button onclick="pagar()">Confirmar</button>
+            <button onclick="fecharModal()">Fechar</button>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/vendas.js"></script>
+
+    <div id="mensagem"></div>
+
+</body>
+
+</html>
