@@ -132,7 +132,7 @@ Como Executar o Projeto
 
 1. Clone o repositório
 
-https://github.com/lucasferreiramatos312-creator/mini-ERP_Sisitema_De_Apoio_Para_Revedendores.git
+https://github.com/lucasferreiramatos312-creator/mini-erp-comercial--fastapi.git
 
 2. Instale as dependências
 
