@@ -22,8 +22,8 @@ def verificar_senha(senha_digitada: str, hash_salvo: str):
 load_dotenv()
 
 SECRET_KEY = os.getenv("SECRET_KEY")
-ALGORITHM = "HS256"
-TEMPO_EXPIRACAO = 60
+ALGORITHM = os.getenv("ALGORITHM")
+TEMPO_EXPIRACAO = int(os.getenv("TEMPO_EXPIRACAO"))
 
 def criar_token(dados: dict):
 
