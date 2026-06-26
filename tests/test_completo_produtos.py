@@ -63,14 +63,14 @@ def test_de_fluxo_completo_produtos(client, token):
 
     produto_inativado = inativar_produto(client, token, produto_atualizado["id"])
 
-    assert produto_inativado["ativo"] == 0
+    assert produto_inativado["ativo"] is False
 
     produtos_inativos = listar_produtos_inativos(client, token)
     assert any(c["id"] == produto_atualizado["id"] for c in produtos_inativos)
 
     produto_reativado = reativar_produto(client, token, produto_inativado["id"])
 
-    assert produto_reativado["ativo"] == 1
+    assert produto_reativado["ativo"] is True
     produtos_ativos = listar_produtos_ativos(client, token)
 
     assert any(c["id"] == produto_reativado["id"] for c in produtos_ativos)

@@ -213,7 +213,7 @@ def atualizar_item_venda_service(venda_id, produto_id, quantidade, usuario_id):
         diferenca = quantidade - qtd_antiga
 
         if diferenca > 0:
-            cursor.execute("SELECT estoque FROM produtos WHERE id = ?", (produto_id,))
+            cursor.execute("SELECT estoque FROM produtos WHERE id = %s", (produto_id,))
             
             resultado = cursor.fetchone()
 
@@ -227,15 +227,15 @@ def atualizar_item_venda_service(venda_id, produto_id, quantidade, usuario_id):
         
             cursor.execute("""
                             UPDATE produtos
-                            SET estoque = estoque - ?
-                            WHERE id = ?
+                            SET estoque = estoque - %s
+                            WHERE id = %s
                             """, (diferenca, produto_id))
         
         elif diferenca < 0:
             cursor.execute("""
                            UPDATE produtos
-                           SET estoque = estoque + ?
-                           WHERE id = ?
+                           SET estoque = estoque + %s
+                           WHERE id = %s
                            """, (abs(diferenca), produto_id))
         
         atualizar_item_venda(cursor, venda_id, produto_id, quantidade)

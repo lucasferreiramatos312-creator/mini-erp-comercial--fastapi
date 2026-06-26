@@ -21,8 +21,10 @@ def autenticar_usuario(email, senha):
 
     if not usuario:
         raise AutenticacaoException("Email ou senha inválidos")
+    
+    senha_hash = usuario[3]
 
-    senha_valida = verificar_senha(senha, usuario.Senha)
+    senha_valida = verificar_senha(senha, senha_hash)
 
     if not senha_valida:
         raise AutenticacaoException("Email ou senha inválidos")

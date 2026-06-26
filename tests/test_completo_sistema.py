@@ -98,19 +98,19 @@ def test_completo_sistema(client, token):
     assert any(v["id"] == venda1_paga["id"] for v in listar1_vendas_fechadas_mes)
 
     cliente_inativado = inativar_cliente(client, token, cliente["id"])
-    assert cliente_inativado["ativo"] == 0
+    assert cliente_inativado["ativo"] is False
 
     venda_invalida = criar_venda_simples_erro(client, token, cliente_id=cliente_inativado["id"])
     assert venda_invalida.status_code == 404
 
     cliente_reativado = reativar_cliente(client, token, cliente_inativado["id"])
-    assert cliente_reativado["ativo"] == 1
+    assert cliente_reativado["ativo"] is True
 
     venda_valida = criar_venda_simples_por_cliente_id(client, token, cliente_id=cliente_reativado["id"])
     assert venda_valida["cliente_id"] == cliente_reativado["id"]
 
     produtoX_inativado = inativar_produto(client, token, produto_X["id"])
-    assert produtoX_inativado["ativo"] == 0
+    assert produtoX_inativado["ativo"] is False
 
     item_invalido = criar_item_e_adicionar_erro(client, token,
                                                 venda_valida["id"],
@@ -118,7 +118,7 @@ def test_completo_sistema(client, token):
     assert item_invalido.status_code == 404
 
     produtoX_reativado = reativar_produto(client, token, produto_X["id"])
-    assert produtoX_reativado["ativo"] == 1
+    assert produtoX_reativado["ativo"] is True
 
     item_valido = criar_item_e_adicionar_quantidade(client, token,
                                                     venda_valida["id"],

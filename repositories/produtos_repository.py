@@ -7,8 +7,8 @@ def criar_produto(nome, valor, estoque, usuario_id):
 
     cursor.execute("""
         INSERT INTO produtos (nome, valor, estoque, usuario_id)
-        OUTPUT INSERTED.id
-        VALUES (?, ?, ?, ?)
+        VALUES (%s, %s, %s, %s)
+        RETURNING id
     """, (nome, valor, estoque, usuario_id))
 
     produto_id = cursor.fetchone()[0]
@@ -26,7 +26,7 @@ def listar_produtos(usuario_id):
     cursor.execute("""
         SELECT id, nome, valor, estoque, ativo
         FROM produtos
-        WHERE usuario_id = ? AND ativo = 1
+        WHERE usuario_id = %s AND ativo = TRUE
     """, (usuario_id,))
 
     produtos = cursor.fetchall()
@@ -43,7 +43,7 @@ def buscar_produto_por_id_geral(id, usuario_id):
     cursor.execute("""
                    SELECT id, nome, valor, estoque, ativo
                    FROM produtos
-                   WHERE id = ? AND usuario_id = ?
+                   WHERE id = %s AND usuario_id = %s
                    """, (id, usuario_id))
     
     produto = cursor.fetchone()
@@ -60,7 +60,7 @@ def buscar_produto_por_id(id, usuario_id):
     cursor.execute("""
                    SELECT id, nome, valor, estoque, ativo
                    FROM produtos
-                   WHERE id = ? AND usuario_id = ? AND ativo = 1
+                   WHERE id = %s AND usuario_id = %s AND ativo = TRUE
                    """, (id, usuario_id))
     
     produto = cursor.fetchone()
@@ -77,7 +77,7 @@ def buscar_produto_por_nome(nome, usuario_id):
         cursor.execute("""
                        SELECT id, nome, valor, estoque, ativo
                        FROM produtos
-                       WHERE usuario_id = ? AND nome LIKE ? AND ativo = 1
+                       WHERE usuario_id = %s AND nome ILIKE %s AND ativo = TRUE
                        """, (usuario_id, f'%{nome}%'))
         
         produtos = cursor.fetchall()
@@ -93,29 +93,12 @@ def atualizar_produto(id, nome, valor, estoque, usuario_id):
 
     cursor.execute("""
         UPDATE produtos
-        SET nome = ?, valor = ?, estoque = ?
-        WHERE id = ? AND usuario_id = ?
+        SET nome = %s, valor = %s, estoque = %s
+        WHERE id = %s AND usuario_id = %s
     """, (nome, valor, estoque, id, usuario_id))
 
     conexao.commit()
     conexao.close()
-
-def produto_tem_vendas(produto_id):
-     
-    conexao = conectar()
-    cursor = conexao.cursor()
-
-    cursor.execute("""
-                   SELECT COUNT(*)
-                   FROM itens_venda
-                   WHERE produto_id = ?
-                   """, (produto_id,))
-    
-    total = cursor.fetchone()[0]
-
-    conexao.close()
-
-    return total > 0
 
 def listar_produtos_inativos(usuario_id):
      
@@ -125,7 +108,7 @@ def listar_produtos_inativos(usuario_id):
     cursor.execute("""
         SELECT id, nome, valor, estoque, ativo
         FROM produtos
-        WHERE usuario_id = ? AND ativo = 0
+        WHERE usuario_id = %s AND ativo = FALSE
     """, (usuario_id,))
 
     produtos = cursor.fetchall()
@@ -141,8 +124,8 @@ def inativar_produto(id, usuario_id):
 
     cursor.execute("""
                    UPDATE produtos
-                   SET ativo = 0
-                   WHERE id = ? AND usuario_id = ?
+                   SET ativo = FALSE
+                   WHERE id = %s AND usuario_id = %s
                    """,(id, usuario_id))
 
     conexao.commit()
@@ -150,7 +133,7 @@ def inativar_produto(id, usuario_id):
     cursor.execute("""
                    SELECT id, nome, valor, estoque, ativo
                    FROM produtos 
-                   WHERE id = ? AND usuario_id = ?
+                   WHERE id = %s AND usuario_id = %s
                    """, (id,usuario_id))
     
     produto = cursor.fetchone()
@@ -166,8 +149,8 @@ def reativar_produto(id, usuario_id):
 
     cursor.execute("""
                    UPDATE produtos
-                   SET ativo = 1
-                   WHERE id = ? AND usuario_id = ?
+                   SET ativo = TRUE
+                   WHERE id = %s AND usuario_id = %s
                    """, (id, usuario_id))
     
     conexao.commit()
@@ -175,7 +158,7 @@ def reativar_produto(id, usuario_id):
     cursor.execute("""
                    SELECT id, nome, valor, estoque, ativo
                    FROM produtos 
-                   WHERE id = ? AND usuario_id = ?
+                   WHERE id = %s AND usuario_id = %s
                    """, (id,usuario_id))
 
     produto_reativado = cursor.fetchone()

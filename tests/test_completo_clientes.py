@@ -65,7 +65,7 @@ def test_de_fluxo_completo_clientes(client, token):
 
     cliente_inativado = inativar_cliente(client, token, cliente_atualizado["id"])
 
-    assert cliente_inativado["ativo"] == 0
+    assert cliente_inativado["ativo"] is False
 
     clientes_inativos = listar_clientes_inativos(client, token)
 
@@ -73,7 +73,7 @@ def test_de_fluxo_completo_clientes(client, token):
 
     cliente_reativado = reativar_cliente(client, token, cliente_inativado["id"])
 
-    assert cliente_reativado["ativo"] == 1
+    assert cliente_reativado["ativo"] is True
 
     clientes_ativos = listar_clientes_ativos(client, token)
 

@@ -6,8 +6,8 @@ def criar_usuario(nome, email, senha_hash):
     cursor = conexao.cursor()
 
     cursor.execute("""
-        INSERT INTO Usuarios (nome, email, senha)
-        VALUES (?, ?, ?)
+        INSERT INTO usuarios (nome, email, senha)
+        VALUES (%s, %s, %s)
     """, (nome, email, senha_hash))
 
     conexao.commit()
@@ -20,9 +20,9 @@ def buscar_usuario_por_email(email):
     cursor = conexao.cursor()
 
     cursor.execute("""
-        SELECT Id, Nome, Email, Senha
-        FROM Usuarios
-        WHERE Email = ?
+        SELECT id, nome, email, senha
+        FROM usuarios
+        WHERE email = %s
     """, (email,))
 
     usuario = cursor.fetchone()

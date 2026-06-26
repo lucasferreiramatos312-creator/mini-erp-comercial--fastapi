@@ -8,7 +8,7 @@ def contar_vendas(usuario_id):
     cursor.execute("""
                    SELECT SUM(total)
                    FROM vendas
-                   WHERE usuario_id = ? AND fechada = 0
+                   WHERE usuario_id = %s AND fechada = FALSE
                    """, (usuario_id,))
     
     resultado = cursor.fetchone()
@@ -26,12 +26,12 @@ def obter_faturamento_total(usuario_id, mes=None, ano=None):
     query = """
                    SELECT SUM(total)
                    FROM vendas
-                   WHERE usuario_id = ? AND fechada = 0
+                   WHERE usuario_id = %s AND fechada = FALSE
                    """
     params = [usuario_id]
 
     if mes and ano:
-        query += " AND MONTH(data_venda) = ? AND YEAR(data_venda) = ?"
+        query += " AND EXTRACT(MONTH FROM data_venda) = %s AND EXTRACT(YEAR FROM data_venda) = %s"
         params.extend([mes, ano])
 
     cursor.execute(query, params)
@@ -52,12 +52,12 @@ def obter_total_recebido(usuario_id, mes=None, ano=None):
                    SELECT SUM(p.valor_pago)
                    FROM pagamentos p
                    JOIN vendas v ON p.venda_id = v.id
-                   WHERE v.usuario_id = ? AND v.fechada = 0
+                   WHERE v.usuario_id = %s AND v.fechada = FALSE
             """
     params = [usuario_id]
 
-    if mes and ano:
-        query += " AND MONTH(v.data_venda) = ? AND YEAR(v.data_venda) = ?"
+    if mes is not None and ano is not None:
+        query += " AND EXTRACT(MONTH FROM v.data_venda) = %s AND EXTRACT(YEAR FROM v.data_venda) = %s"
         params.extend([mes, ano])
 
     cursor.execute(query, params)
@@ -77,7 +77,7 @@ def contar_clientes(usuario_id):
     cursor.execute("""
                    SELECT COUNT(*)
                    FROM clientes
-                   WHERE usuario_id = ? AND ativo = 1
+                   WHERE usuario_id = %s AND ativo = TRUE
                    """, (usuario_id,))
     
     resultado = cursor.fetchone()
@@ -95,7 +95,7 @@ def contar_produtos(usuario_id):
     cursor.execute("""
                    SELECT COUNT(*)
                    FROM produtos
-                   WHERE usuario_id = ? AND ativo = 1
+                   WHERE usuario_id = %s AND ativo = TRUE
                    """, (usuario_id,))
     
     resultado = cursor.fetchone()

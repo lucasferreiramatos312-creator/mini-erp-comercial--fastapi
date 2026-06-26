@@ -195,7 +195,7 @@ def test_inativar_cliente(client, token):
 
     data = buscar_cliente_por_id(client, token, cliente["id"])
 
-    assert response.json()["dados"]["ativo"] == 0
+    assert response.json()["dados"]["ativo"] is False
 
     assert data["id"] == response.json()["dados"]["id"]
 
@@ -224,7 +224,7 @@ def test_reativar_cliente(client, token):
 
     cliente_inativo = inativar_cliente(client, token, cliente_ativo["id"])
 
-    assert cliente_inativo["ativo"] == 0
+    assert cliente_inativo["ativo"] is False
 
     response = client.put(
         f"/clientes/{cliente_inativo['id']}/reativar",
@@ -235,5 +235,5 @@ def test_reativar_cliente(client, token):
 
     data = response.json()["dados"]
 
-    assert data["ativo"] == 1
+    assert data["ativo"] is True
     assert data["id"] == cliente_inativo["id"]

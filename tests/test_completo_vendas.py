@@ -130,13 +130,13 @@ def test_completo_vendas(client, token):
     cliente = criar_cliente(client, token)
 
     cliente_inativado = inativar_cliente(client, token, cliente["id"])
-    assert cliente_inativado["ativo"] == 0
+    assert cliente_inativado["ativo"] is False
 
     venda_clinte_inativo = criar_venda_simples_erro(client, token, cliente_id=cliente_inativado["id"])
     assert venda_clinte_inativo.status_code == 404
 
     produto_inativado = inativar_produto(client, token, produto["id"])
-    assert produto_inativado["ativo"] == 0
+    assert produto_inativado["ativo"] is False
 
     venda_criada_cliente_ativo = criar_venda_simples(client, token)
 

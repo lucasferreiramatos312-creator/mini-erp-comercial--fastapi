@@ -184,7 +184,7 @@ def test_inativar_produto(client, token):
 
     assert response.status_code == 200
     
-    assert response.json()["dados"]["ativo"] == 0
+    assert response.json()["dados"]["ativo"] is False
 
 def test_listar_produtos_inativos(client, token):
 
@@ -218,4 +218,4 @@ def test_reativar_produto(client, token):
 
     assert response.status_code == 200
 
-    assert response.json()["dados"]["ativo"] == 1
+    assert response.json()["dados"]["ativo"] is True

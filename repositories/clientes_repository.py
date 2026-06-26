@@ -5,9 +5,9 @@ def criar_cliente(nome, email, telefone, usuario_id):
     cursor = conexao.cursor()
 
     cursor.execute("""
-        INSERT INTO clientes (nome, email, telefone, usuario_id)
-        OUTPUT INSERTED.id
-        VALUES (?, ?, ?, ?)
+        INSERT INTO clientes (nome, email, telefone, usuario_id)        
+        VALUES (%s, %s, %s, %s)
+        RETURNING id
     """, (nome, email, telefone, usuario_id))
 
     cliente_id = cursor.fetchone()[0]
@@ -25,7 +25,7 @@ def listar_clientes(usuario_id):
     cursor.execute("""
         SELECT id, nome, email, telefone, ativo
         FROM clientes
-        WHERE usuario_id = ? AND ativo = 1
+        WHERE usuario_id = %s AND ativo = TRUE
     """, (usuario_id,))
 
     clientes = cursor.fetchall()
@@ -43,7 +43,7 @@ def buscar_cliente_por_id_geral(id, usuario_id):
     cursor.execute("""
                    SELECT id, nome, email, telefone, ativo
                    FROM clientes
-                   WHERE id = ? AND usuario_id = ?
+                   WHERE id = %s AND usuario_id = %s
                    """, (id, usuario_id))
     
     cliente =  cursor.fetchone()
@@ -60,7 +60,7 @@ def buscar_cliente_por_id(cliente_id, usuario_id):
     cursor.execute("""
                    SELECT id, nome, email, telefone, ativo
                    FROM clientes
-                   WHERE id = ? AND usuario_id = ? AND ativo = 1
+                   WHERE id = %s AND usuario_id = %s AND ativo = TRUE
                    """, (cliente_id, usuario_id))
     
     cliente = cursor.fetchone()
@@ -77,7 +77,7 @@ def buscar_cliente_por_nome(nome, usuario_id):
     cursor.execute("""
                    SELECT id, nome, email, telefone, ativo
                    FROM clientes
-                   WHERE usuario_id = ? AND nome LIKE ? AND ativo = 1
+                   WHERE usuario_id = %s AND nome ILIKE %s AND ativo = TRUE
                    """, (usuario_id, f'%{nome}%')) 
 
     clientes = cursor.fetchall()
@@ -92,8 +92,8 @@ def atualizar_cliente(id, nome, email, telefone, usuario_id):
 
     cursor.execute("""
                   UPDATE clientes
-                  SET nome = ?, email = ?, telefone = ?
-                  WHERE id = ? AND usuario_id = ?
+                  SET nome = %s, email = %s, telefone = %s
+                  WHERE id = %s AND usuario_id = %s
                    """, (nome, email, telefone, id, usuario_id))
     
     conexao.commit()
@@ -107,7 +107,7 @@ def listar_clientes_inativos(usuario_id):
     cursor.execute("""
         SELECT id, nome, email, telefone, ativo
         FROM clientes
-        WHERE ativo = 0 AND usuario_id = ? 
+        WHERE ativo = FALSE AND usuario_id = %s 
         """,(usuario_id,))
     
     clientes = cursor.fetchall()
@@ -123,8 +123,8 @@ def inativar_cliente(id, usuario_id):
 
     cursor.execute("""
                    UPDATE clientes
-                   SET ativo = 0
-                   WHERE id = ? AND usuario_id = ?
+                   SET ativo = FALSE
+                   WHERE id = %s AND usuario_id = %s
                    """, (id, usuario_id))
     
     conexao.commit()
@@ -132,7 +132,7 @@ def inativar_cliente(id, usuario_id):
     cursor.execute("""
                    SELECT id, nome, email, telefone, ativo
                    FROM clientes
-                   WHERE id = ? AND usuario_id = ?
+                   WHERE id = %s AND usuario_id = %s
                    """, (id, usuario_id))
     
 
@@ -149,8 +149,8 @@ def reativar_cliente(id, usuario_id):
 
     cursor.execute("""
                    UPDATE clientes
-                   SET ativo = 1 
-                   WHERE id = ? AND usuario_id = ?
+                   SET ativo = TRUE
+                   WHERE id = %s AND usuario_id = %s
                    """, (id, usuario_id))
     
     conexao.commit()
@@ -158,7 +158,7 @@ def reativar_cliente(id, usuario_id):
     cursor.execute("""
                    SELECT id, nome, email, telefone, ativo
                    FROM clientes
-                   WHERE id = ? AND usuario_id = ?
+                   WHERE id = %s AND usuario_id = %s
                    """, (id, usuario_id))
 
     cliente = cursor.fetchone()
