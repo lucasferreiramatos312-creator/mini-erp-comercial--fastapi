@@ -15,7 +15,7 @@ async function registrar() {
 
     try {
 
-        const response = await fetch("http://127.0.0.1:8000/auth/registrar",
+        const response = await fetch("https://mini-erp-comercial-fastapi.onrender.com/auth/registrar",
             {
                 method: "POST",
                 headers: {
