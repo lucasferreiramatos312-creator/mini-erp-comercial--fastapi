@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   db:
     image: postgres:17
@@ -8,7 +6,7 @@ services:
     environment:
       POSTGRES_DB: minierp
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgress$@!Lucas8789*
+      POSTGRES_PASSWORD: postgress@!Lucas8789*
     ports:
       - "5432:5432"
     volumes:
