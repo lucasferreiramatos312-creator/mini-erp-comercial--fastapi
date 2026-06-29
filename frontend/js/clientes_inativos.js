@@ -24,7 +24,7 @@ async function listaClientesInativos() {
 
         lista.innerHTML = "";
 
-        clientes.forEach(cliente => {
+        clientes.dados.forEach(cliente => {
 
             lista.innerHTML += `
         <tr>
