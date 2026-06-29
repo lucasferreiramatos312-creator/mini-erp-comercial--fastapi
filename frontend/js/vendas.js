@@ -126,6 +126,7 @@ async function listarVendas() {
 
     data.dados.forEach(v => {
         const dataFormatada = new Date(v.data_venda).toLocaleString();
+        console.log(v);
 
         tabela.innerHTML += `
                     <tr>
@@ -149,14 +150,14 @@ async function verDetalhes(id) {
     vendaAtual = id;
 
     let html = `
-                Cliente: ${data.venda.cliente_nome}<br>
-                Total: R$ ${data.venda.total}<br>
-                Pago: R$ ${data.total_pago}<br>
-                Status: ${data.status}<br><br>
+                Cliente: ${data.dados.venda.cliente_nome}<br>
+                Total: R$ ${data.dados.venda.total}<br>
+                Pago: R$ ${data.dados.total_pago}<br>
+                Status: ${data.dados.status}<br><br>
                 <b>Itens:</b><br>
                 `;
 
-    data.itens.forEach(i => {
+    data.dados.itens.forEach(i => {
         html += `${i.produto_nome} - ${i.quantidade}x (R$ ${i.valor_unitario})
                 
                 <button onclick="editarItem(${i.produto_id}, ${i.quantidade})">Editar</button>
