@@ -23,7 +23,7 @@ async function carregarClientes() {
 
     const select = document.getElementById("clientes");
 
-    data.forEach(c => {
+    data.dados.forEach(c => {
         select.innerHTML += `<option value="${c.id}">${c.nome}</option>`;
     });
 }
@@ -34,7 +34,7 @@ async function carregarProdutos() {
 
     const select = document.getElementById("produtos");
 
-    data.forEach(p => {
+    data.dados.forEach(p => {
         select.innerHTML += `<option value="${p.id}">${p.nome} - R$ ${p.valor}</option>`;
     });
 }
@@ -66,7 +66,7 @@ function renderizarItens() {
     const lista = document.getElementById("listaItens");
     lista.innerHTML = "";
 
-    itensVenda.forEach((item, index) => {
+    itensVenda.dados.forEach((item, index) => {
 
         const li = document.createElement("li");
 
@@ -124,7 +124,7 @@ async function listarVendas() {
     const tabela = document.getElementById("tabelaVendas");
     tabela.innerHTML = "";
 
-    data.forEach(v => {
+    data.dados.forEach(v => {
         const dataFormatada = new Date(v.data_venda).toLocaleString();
 
         tabela.innerHTML += `
@@ -156,7 +156,7 @@ async function verDetalhes(id) {
                 <b>Itens:</b><br>
                 `;
 
-    data.itens.forEach(i => {
+    data.dados.itens.forEach(i => {
         html += `${i.produto_nome} - ${i.quantidade}x (R$ ${i.valor_unitario})
                 
                 <button onclick="editarItem(${i.produto_id}, ${i.quantidade})">Editar</button>

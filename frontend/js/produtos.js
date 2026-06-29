@@ -18,7 +18,7 @@ function renderizarProdutos(data) {
     const lista = document.getElementById("listaProdutos");
     lista.innerHTML = "";
 
-    data.forEach(p => {
+    data.dados.forEach(p => {
         const tr = document.createElement("tr");
 
         tr.innerHTML = `

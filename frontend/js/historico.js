@@ -33,7 +33,7 @@ async function buscarHistorico() {
     const tabela = document.getElementById("tabelaHistorico");
     tabela.innerHTML = "";
 
-    data.forEach(v => {
+    data.dados.forEach(v => {
         const dataFormatada = new Date(v.data_venda).toLocaleString();
 
         tabela.innerHTML += `

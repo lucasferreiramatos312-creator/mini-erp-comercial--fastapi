@@ -19,19 +19,19 @@ async function carregarDashboard() {
 
         const data = await api("/dashboard");
 
-        document.getElementById("total_vendas").innerText = "R$ " + data.total_vendas;
+        document.getElementById("total_vendas").innerText = "R$ " + data.dados.total_vendas;
 
-        document.getElementById("faturamento").innerText = "R$ " + data.faturamento;
+        document.getElementById("faturamento").innerText = "R$ " + data.dados.faturamento;
 
-        document.getElementById("recebido").innerText = "R$ " + data.recebido;
+        document.getElementById("recebido").innerText = "R$ " + data.dados.recebido;
 
-        document.getElementById("pendente").innerText = "R$ " + data.pendente;
+        document.getElementById("pendente").innerText = "R$ " + data.dados.pendente;
 
-        document.getElementById("clientes").innerText = data.total_clientes;
+        document.getElementById("clientes").innerText = data.dados.total_clientes;
 
-        document.getElementById("produtos").innerText = data.total_produtos;
+        document.getElementById("produtos").innerText = data.dados.total_produtos;
 
-        document.getElementById("ticket").innerText = "R$ " + data.ticket_medio;
+        document.getElementById("ticket").innerText = "R$ " + data.dados.ticket_medio;
 
     } catch (error) {
         mostrarMensagem("Erro inesperado", "erro");

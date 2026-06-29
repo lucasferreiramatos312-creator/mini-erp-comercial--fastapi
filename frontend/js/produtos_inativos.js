@@ -24,7 +24,7 @@ async function listarProdutosInativos() {
 
         lista.innerHTML = "";
 
-        data.dados.forEach(produto => {
+        produtos.dados.forEach(produto => {
 
             lista.innerHTML += `
         <tr>

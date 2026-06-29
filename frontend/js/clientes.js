@@ -99,7 +99,7 @@ async function buscar() {
         return;
     }
 
-    data.forEach(c => {
+    data.dados.forEach(c => {
         const tr = document.createElement("tr");
         tr.innerHTML = `<td>${c.nome}</td>
                         <td>${c.email}</td>
