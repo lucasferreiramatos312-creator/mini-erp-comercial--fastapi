@@ -66,7 +66,7 @@ function renderizarItens() {
     const lista = document.getElementById("listaItens");
     lista.innerHTML = "";
 
-    itensVenda.dados.forEach((item, index) => {
+    itensVenda.forEach((item, index) => {
 
         const li = document.createElement("li");
 
@@ -156,7 +156,7 @@ async function verDetalhes(id) {
                 <b>Itens:</b><br>
                 `;
 
-    data.dados.itens.forEach(i => {
+    data.itens.forEach(i => {
         html += `${i.produto_nome} - ${i.quantidade}x (R$ ${i.valor_unitario})
                 
                 <button onclick="editarItem(${i.produto_id}, ${i.quantidade})">Editar</button>
