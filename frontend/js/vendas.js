@@ -130,13 +130,13 @@ async function listarVendas() {
 
         tabela.innerHTML += `
                     <tr>
-                        <td>${v.dados.id}</td>
-                        <td>${v.dados.cliente_nome}</td>
-                        <td>${v.dados.total}</td>
+                        <td>${v.id}</td>
+                        <td>${v.cliente_nome}</td>
+                        <td>${v.total}</td>
                         <td>${dataFormatada}</td>
-                        <td><span class="status ${v.dados.status}">${v.dados.status}</span></td>
-                        <td><button onclick="verDetalhes(${v.dados.id})">Detalhes</button>
-                            <button class="btn-danger" onclick="excluirVenda(${v.dados.id})">Excluir</button></td>
+                        <td><span class="status ${v.status}">${v.status}</span></td>
+                        <td><button onclick="verDetalhes(${v.id})">Detalhes</button>
+                            <button class="btn-danger" onclick="excluirVenda(${v.id})">Excluir</button></td>
                     </tr>`;
     });
 }
