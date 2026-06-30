@@ -1,14 +1,57 @@
-Mini ERP Comercial - FastAPI
+[18:25, 30/06/2026] Lucas: Primeira versão estável do Mini ERP Comercial.
 
-Sistema ERP desenvolvido em Python com FastAPI para gerenciamento de clientes, produtos, vendas, estoque e pagamentos.
+Funcionalidades:
+- Gestão de clientes
+- Gestão de produtos
+- Controle de estoque
+- Controle de vendas
+- Controle de pagamentos
+- Dashboard administrativo
+- Autenticação JWT
+- Soft Delete
+- Docker
+- Deploy Backend
+- Deploy Frontend
+- Testes automatizados com 93% de cobertura
 
-O projeto foi desenvolvido aplicando arquitetura em camadas, autenticação JWT, regras de negócio reais e testes automatizados com cobertura de 93%.
+Tecnologias:
+Python, FastAPI, SQL Server, HTML, CSS, JavaScript, Docker e Render.
+[18:25, 30/06/2026] Lucas: git add .
+git commit -m "feat: release final Mini ERP Comercial v1.0"
+git push origin main
+
+git tag -a v1.0.0 -m "Primeira versão estável do Mini ERP Comercial"
+git push origin v1.0.0
+[18:32, 30/06/2026] Lucas: https://mini-erp-comercial-frontend.onrender.com/login.html
+[18:32, 30/06/2026] Lucas: Mini ERP Comercial | FastAPI | SQL Server → PostgreSQL
+
+Sistema ERP Comercial desenvolvido em Python com FastAPI para gerenciamento de clientes, produtos, estoque, vendas e pagamentos.
+
+O projeto foi criado a partir de uma necessidade real de negócio e desenvolvido aplicando arquitetura em camadas, autenticação JWT, testes automatizados, containerização com Docker, migração de banco de dados e deploy em nuvem.
+
+---
+
+Demonstração
+
+Aplicação Online
+
+Frontend
+
+https://mini-erp-comercial-frontend.onrender.com/login.html
+
+Backend (API)
+
+https://mini-erp-comercial-fastapi.onrender.com
+
+Documentação Swagger
+
+https://mini-erp-comercial-fastapi.onrender.com/docs
 
 ---
 
 Sobre o Projeto
 
-Este projeto é uma API ERP desenvolvida com FastAPI para gerenciamento de:
+O Mini ERP Comercial é um sistema completo para gestão comercial que permite controlar:
 
 - Usuários
 - Clientes
@@ -18,25 +61,49 @@ Este projeto é uma API ERP desenvolvida com FastAPI para gerenciamento de:
 - Pagamentos
 - Fechamento mensal
 
-O sistema aplica autenticação JWT, arquitetura em camadas e testes automatizados para garantir segurança, organização e qualidade do código.
+O sistema foi desenvolvido utilizando arquitetura em camadas, separando responsabilidades entre rotas, regras de negócio e acesso aos dados, facilitando manutenção, escalabilidade e evolução futura.
+
+Inicialmente o projeto foi desenvolvido utilizando SQL Server durante o ambiente de desenvolvimento local. Posteriormente foi realizada uma migração completa para PostgreSQL visando compatibilidade com o ambiente de produção e deploy na nuvem utilizando Render.
 
 ---
 
 Tecnologias Utilizadas
 
+Backend
+
 - Python
 - FastAPI
-- SQL Server
+- SQL Server (Desenvolvimento)
+- PostgreSQL (Produção)
 - PyODBC
+- Psycopg
+- Pydantic
 - JWT (python-jose)
 - Passlib (bcrypt)
+- Uvicorn
+
+Frontend
+
+- HTML5
+- CSS3
+- JavaScript
+
+Testes
+
 - Pytest
 - Coverage.py
-- Pydantic
-- Uvicorn
-- HTML
-- Css
-- JavaScript
+
+DevOps
+
+- Docker
+- Git
+- GitHub
+- Render
+
+Ambiente
+
+- Linux
+- WSL (Windows Subsystem for Linux)
 
 ---
 
@@ -47,52 +114,107 @@ Usuários
 - Cadastro de usuários
 - Login
 - Autenticação JWT
+- Proteção de rotas
 
 Clientes
 
-- Criar cliente
-- Buscar cliente
-- Atualizar cliente
-- Inativar cliente
-- Reativar cliente
+- Cadastro
+- Consulta
+- Atualização
+- Inativação (Soft Delete)
+- Reativação
 
 Produtos
 
-- Criar produto
-- Buscar produto
-- Atualizar produto
-- Inativar produto
-- Reativar produto
+- Cadastro
+- Consulta
+- Atualização
 - Controle de estoque
+- Inativação (Soft Delete)
+- Reativação
 
 Vendas
 
-- Criar venda simples
-- Criar venda completa
-- Adicionar itens
-- Atualizar itens
-- Remover vendas pendentes
+- Criação de vendas
+- Adição de múltiplos itens
+- Atualização de itens
+- Exclusão de vendas pendentes
+- Cálculo automático de total
 
 Pagamentos
 
 - Pagamento parcial
 - Pagamento total
-- Controle de saldo
+- Controle de saldo pendente
+- Atualização automática do status da venda
 
 Fechamento Mensal
 
 - Fechamento de vendas pagas
 - Histórico de vendas fechadas
 
+Dashboard
+
+- Total de vendas
+- Faturamento
+- Valores recebidos
+- Valores pendentes
+- Quantidade de clientes
+- Quantidade de produtos
+- Ticket médio
+
 ---
 
 Segurança
 
 - Senhas criptografadas com bcrypt
-- Autenticação via JWT
-- Proteção de rotas com token
+- Autenticação JWT
+- Proteção de endpoints
 - Isolamento de dados por usuário
 - Tratamento centralizado de exceções
+- Validação de regras de negócio
+
+---
+
+Arquitetura do Projeto
+
+Routes
+│
+├── Services
+│
+├── Repositories
+│
+├── Security
+│
+├── Models
+│
+└── Tests
+
+Responsabilidades
+
+Routes
+
+Recebimento das requisições HTTP.
+
+Services
+
+Implementação das regras de negócio.
+
+Repositories
+
+Acesso e manipulação dos dados no banco.
+
+Security
+
+Autenticação e criptografia.
+
+Models
+
+Estruturas e validações de dados.
+
+Tests
+
+Testes automatizados da aplicação.
 
 ---
 
@@ -104,111 +226,131 @@ O projeto possui:
 - Testes de integração
 - Testes de fluxo completo
 
-Cobertura de Testes
+Cobertura
 
 - Cobertura total: 93%
-- 1.787 linhas analisadas
-- Fluxos principais totalmente testados
+- Mais de 1.700 linhas analisadas
+- Principais fluxos totalmente testados
 
-«Recomenda-se adicionar uma imagem do relatório HTML gerado pelo Coverage.py nesta seção.»
+---
+
+Docker e Deploy
+
+O projeto foi containerizado utilizando Docker para garantir consistência entre ambientes de desenvolvimento e produção.
+
+Implementações
+
+- Dockerfile para Backend
+- Containerização da aplicação
+- Configuração para deploy em nuvem
+- Deploy do Backend no Render
+- Deploy do Frontend no Render
+- Migração SQL Server → PostgreSQL
+- Configuração de banco PostgreSQL em produção
+
+Benefícios
+
+- Ambiente padronizado
+- Facilidade de implantação
+- Escalabilidade
+- Independência de dependências locais
+
+---
+
+Principais Desafios Técnicos
+
+Migração de Banco de Dados
+
+O projeto foi originalmente desenvolvido utilizando SQL Server e posteriormente migrado para PostgreSQL para viabilizar o deploy em produção.
+
+Durante a migração foram realizados:
+
+- Conversão de consultas SQL
+- Adaptação de tipos de dados
+- Ajustes de compatibilidade
+- Testes de integridade
+- Validação das regras de negócio
+
+---
+
+Soft Delete
+
+Implementação de exclusão lógica para clientes e produtos, preservando histórico e integridade dos dados.
+
+---
+
+Refatoração da API
+
+Padronização das respostas da aplicação:
+
+{
+  "sucesso": true,
+  "dados": {},
+  "mensagem": "Operação realizada com sucesso"
+}
+
+---
+
+Controle Dinâmico de Status
+
+O status das vendas é calculado automaticamente a partir dos pagamentos registrados:
+
+- PENDENTE
+- PARCIAL
+- PAGO
+- FECHADA
 
 ---
 
 Estatísticas do Projeto
 
-- Arquitetura em camadas
+- Mais de 30 endpoints implementados
+- Backend + Frontend integrados
 - Autenticação JWT
-- CRUD completo de Clientes
-- CRUD completo de Produtos
-- Controle de Estoque
-- Controle de Vendas
-- Controle de Pagamentos
-- Fechamento Mensal
+- Controle de estoque
+- Controle financeiro
+- Dashboard administrativo
+- Soft Delete
+- Migração SQL Server → PostgreSQL
+- Docker
+- Deploy em nuvem
 - 93% de cobertura de testes
-
----
-
-Como Executar o Projeto
-
-1. Clone o repositório
-
-https://github.com/lucasferreiramatos312-creator/mini-erp-comercial--fastapi.git
-
-2. Instale as dependências
-
-py -m pip install fastapi uvicorn pyodbc passlib[bcrypt] python-jose pytest pytest-cov
-
-3. Configure o Banco de Dados
-
-- Crie o banco de dados no SQL Server.
-- Ajuste a string de conexão no arquivo "database.py".
-
-4. Execute o Servidor
-
-uvicorn main:app --reload
-
-5. Acesse a Documentação
-
-http://127.0.0.1:8000/docs
-
-6. Frontend
-
-Abra o arquivo "index.html" utilizando a extensão Live Server.
-
----
-
-Arquitetura do Projeto
-
-O projeto segue o padrão de separação em camadas:
-
-Routes        → Entrada da API (HTTP)
-Services      → Regras de negócio
-Repositories  → Acesso ao banco de dados
-Security      → Autenticação e criptografia
-Models        → Estruturas de dados
-Tests         → Testes automatizados
-
-Essa estrutura facilita manutenção, escalabilidade e organização do código.
 
 ---
 
 Aprendizados
 
-Durante o desenvolvimento deste projeto foram aplicados conceitos como:
+Durante o desenvolvimento deste projeto foram aplicados conceitos de:
 
-- Arquitetura em camadas
+- Desenvolvimento Backend
+- APIs REST
+- Arquitetura em Camadas
+- Programação Orientada a Objetos
+- SQL Server
+- PostgreSQL
+- Migração de bancos relacionais
+- Modelagem de Dados
+- Soft Delete
 - Autenticação JWT
+- Testes Automatizados
+- Docker
+- Deploy
 - Integração Backend + Frontend
-- Testes automatizados
-- Cobertura de código
-- Tratamento de exceções
-- Regras de negócio
-- Consumo de API com JavaScript
-- Integração com SQL Server
+- Git e GitHub
+- Linux e WSL
 
 ---
 
-## Imagens do Projeto
-
-### Documentação Swagger
-
-![Swagger](images/swagger.png)
-![Swagger](images/swagger2.png)
-### Cobertura de Testes
-
-![Coverage](images/coverage.png)
-![Coverage](images/coverage2.png)
-
 Melhorias Futuras
 
-- Dashboard financeiro melhorado 
 - Relatórios PDF
-- Docker
-- Deploy em nuvem
-- React no frontend
-- Controle de usuários por perfil
 - Exportação para Excel
-- Dashboard administrativo
+- Controle de permissões por perfil
+- Dashboard avançado
+- React no Frontend
+- Integração com WhatsApp
+- Módulo de relatórios gerenciais
+- Integração com Inteligência Artificial
 
 ---
 
@@ -216,4 +358,10 @@ Autor
 
 Lucas Ferreira
 
-Desenvolvedor Backend Python
+Estudante de Desenvolvimento de Sistemas | Desenvolvedor Backend Python
+
+GitHub:
+https://github.com/lucasferreiramatos312-creator
+
+LinkedIn:
+https://www.linkedin.com/in/lucas-ferreira-991b093a0
