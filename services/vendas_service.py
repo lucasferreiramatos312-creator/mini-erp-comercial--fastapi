@@ -168,7 +168,19 @@ def buscar_venda_por_cliente_service(nome, usuario_id):
     if not vendas:
         raise VendaNaoEncontrada()
     
-    return [formatar_venda(v) for v in vendas]
+    resultado = []
+
+    for venda in vendas:
+
+        venda_id = venda[0]
+
+        status = calcular_status_venda(venda_id)
+
+        total_pago = obter_total_pago(venda_id)
+
+        resultado.append(formatar_venda(venda, status=status, total_pago=total_pago))
+
+    return resultado
 
 def listar_vendas_service(usuario_id, mes=None, ano=None):
     
