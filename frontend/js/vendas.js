@@ -150,8 +150,8 @@ async function verDetalhes(id) {
     vendaAtual = id;
 
     let html = `
-                Cliente: ${data.dados.venda.cliente_nome}<br>
-                Total: R$ ${data.dados.venda.total}<br>
+                Cliente: ${data.dados.cliente_nome}<br>
+                Total: R$ ${data.dados.total}<br>
                 Pago: R$ ${data.dados.total_pago}<br>
                 Status: ${data.dados.status}<br><br>
                 <b>Itens:</b><br>
